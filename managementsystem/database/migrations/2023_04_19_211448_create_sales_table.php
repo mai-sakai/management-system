@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateManagementsystemsTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateManagementsystemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('managementsystems', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
+            $table->unsignedBiginteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateManagementsystemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('managementsystems');
+        Schema::dropIfExists('sales');
     }
 }
